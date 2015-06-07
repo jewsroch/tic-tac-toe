@@ -68,7 +68,6 @@ gulp.task('browserify-client', ['lint-client'], function() {
 
 
 // Styles
-
 gulp.task('styles', function() {
   return gulp.src('./client/stylus/main.styl')
     .pipe(stylus().on('error', notify.onError(function(error) {
@@ -100,8 +99,6 @@ gulp.task('uglify', ['browserify-client'], function() {
     }));
 });
 
-
-
 // Test
 
 // gulp.task('test', ['lint-test', 'browserify-test'], function() {
@@ -110,9 +107,9 @@ gulp.task('uglify', ['browserify-client'], function() {
 // });
 
 gulp.task('watch', ['browserSync'], function() {
-  gulp.watch('client/**/*.js', ['browserify-client']);
+  gulp.watch('client/**/*.js', ['uglify']).on('change', reload);
   // gulp.watch('test/client/**/*.js', ['test']);
-  gulp.watch('client/**/*.styl', ['styles']);
+  gulp.watch('client/**/*.styl', ['styles', 'minify']).on('change', reload);
   gulp.watch('views/*.hbs').on('change', reload);
 });
 
