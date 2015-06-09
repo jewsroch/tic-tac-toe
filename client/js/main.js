@@ -1,7 +1,8 @@
 /*jslint node: true */
+/*jslint browser:true */
 'use strict';
 
-var $ = require('jQuery');
+var $ = require('jquery');
 var _ = require('underscore');
 
 var board = new Array(9);
