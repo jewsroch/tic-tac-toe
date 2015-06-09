@@ -1,26 +1,97 @@
 @import './normalize'
+@import './colors'
+@import url(http://fonts.googleapis.com/css?family=Roboto:500,300)
 
 *
 	box-sizing: border-box
 
 body
 	padding: 50px
-	font: 14px "Lucida Grande"
+	font-size: 1rem
+	font-size: 14px
+	font-weight: 300
+	font-family: 'Roboto', sans-serif
 
-a
-	color: #00B7FF;
+h1
+	font-weight: 300
+
+a, a:hover, a:active
+	text-decoration: none
+	color: $darkGrey
+
+a:hover
+	color: $black
+
+small
+	display: inline-block
+	padding: 0 0 10px 0
+
+.wrapper
+	text-align: center
 
 .board
-	height: 310px
-	width: 310px
-	border: 5px solid #444
+	margin: 0 auto
+	color: #fff
+	height: 302px
+	width: 302px
+	border: 1px solid $black
 
-.cell
+	&.win .cell
+		pointer-events: none
+
+.wrapper .board .cell.win
+	background: $cyan
+
+.board .cell:after
+	content: 'x'
+
+.board.o .cell:after
+	content: 'o'
+
+.board .cell
 	float: left
 	width: 100px
 	height: 100px
-	border: 3px solid #444
+	border: 1px solid $black
 
-.cell:hover
-	background-color: #bbb
-	cursor: pointer
+	&.blank
+		background-color: $white
+		color: $white
+	&:after
+		font-size: 75px
+		line-height: 50px
+		margin-top: 15px
+		text-align: center
+		display: block
+		font-weight: 300
+		font-family: 'Roboto', sans-serif
+	&:hover
+		background-color: $lightGrey
+		cursor: pointer
+	&[data-mark="x"], &[data-mark="o"]
+		pointer-events: none
+		background: $grey
+	&[data-mark="x"]:after
+		content: 'x'
+	&[data-mark="o"]:after
+		content: 'o'
+
+.message
+	font-size 1.5rem
+
+.reset
+	display: none;
+	padding 20px
+	font-size: 1.5rem
+	background: $white
+	color: $black
+	border: 2px solid $black
+	transition: background-color 0.1s ease
+
+	&:hover, &:focus
+		outline: 0
+		background: $grey
+		color: $white
+	&.visible
+		display: block;
+		margin: 20px auto;
